@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  time: 2013-09-10 13:55:11
+  player_one: 1
+  player_two: 1
+  winner: 1
+  bets_one: 1
+  bets_two: 1
+  bet_count: 1
+  start_time: 2013-09-10 13:55:11
+  end_time: 2013-09-10 13:55:11
+
+two:
+  time: 2013-09-10 13:55:11
+  player_one: 1
+  player_two: 1
+  winner: 1
+  bets_one: 1
+  bets_two: 1
+  bet_count: 1
+  start_time: 2013-09-10 13:55:11
+  end_time: 2013-09-10 13:55:11
