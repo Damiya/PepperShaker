@@ -3,6 +3,8 @@ class ScraperController < ApplicationController
   require 'rubygems'
   require 'mechanize'
 
+  # Class variables are dirty as heck (They equate to static in my world) but ostensibly there's only one call into the scraper
+  # Since it's ultimately getting gated behind a login process.
   @@scraper_logged_in = false
 
   @@agent = Mechanize.new { | agent |
