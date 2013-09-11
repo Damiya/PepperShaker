@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130910221154) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "champions", force: true do |t|
     t.string   "name"
     t.integer  "elo"
@@ -48,11 +51,9 @@ ActiveRecord::Schema.define(version: 20130910221154) do
 
   create_table "fights", force: true do |t|
     t.datetime "time"
-    t.integer  "player_one"
-    t.integer  "player_two"
-    t.integer  "winner"
     t.integer  "bets_one"
     t.integer  "bets_two"
+    t.integer  "winner"
     t.integer  "bet_count"
     t.time     "start_time"
     t.time     "end_time"
