@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
