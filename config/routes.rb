@@ -1,4 +1,7 @@
 PepperShaker::Application.routes.draw do
+  get "ember/index"
+  root 'application#index'
+
   get 'scraper/scrape/:id' => 'scraper#scrape'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

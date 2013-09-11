@@ -14,10 +14,18 @@ gem 'mechanize'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+gem 'ember-data-source', '1.0.0.beta2'
+
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+
 gem 'dotenv-rails'
+
+gem 'ember-rails'
+
+gem 'foreman'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
