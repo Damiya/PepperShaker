@@ -1,16 +1,5 @@
 PepperShaker = window.PepperShaker = Ember.Application.create();
 
-Ember.EasyForm.Config.registerWrapper('default', {
-  formClass: 'form-signin',
-  fieldErrorClass: 'error',
-  errorClass: 'help-inline',
-  hintClass: 'help-block',
-  labelClass: '',
-  inputClass: 'form-control',
-  wrapControls: false,
-  controlsWrapperClass: ''
-});
-
 #= require ./store
 #= require_tree ./models
 #= require_tree ./controllers
