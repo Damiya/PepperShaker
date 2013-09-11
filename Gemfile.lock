@@ -179,7 +179,6 @@ DEPENDENCIES
   ember-data-source (= 1.0.0.beta2)
   ember-rails
   foreman
-  handlebars-source
   jbuilder (~> 1.2)
   jquery-rails
   mechanize

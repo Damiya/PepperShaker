@@ -1,7 +1,8 @@
-//= require jquery_ujs.js
-//= require handlebars.js
-//= require ember.js
-//= require ember-data.js
-//= require pepper_shaker.js.coffee
+//= require jquery
+//= require jquery_ujs
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require pepper_shaker
 
 //= require_tree .
