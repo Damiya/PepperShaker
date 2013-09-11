@@ -18,17 +18,18 @@
                 {{/if}}
             </ul>
             <ul class="nav navbar-nav pull-right">
-                {{#if loggedIn}}
-                    <li><a href="#logout">Logout</a></li>
-                {{else}}
+                {{#if PepperShaker.Auth.signedIn}}
                     <li><a href="#login">Login</a></li>
+                {{else}}
+                    <li>{{#link-to 'session.new'}}Login{{/link-to}}</li>
+
                 {{/if}}
             </ul>
         </div>
         <!--/.nav-collapse -->
     </div>
 </div>
-<div class="container">
+<div class="container primary-outlet">
     <div class="row">
         <div class="col-md-12">
             {{outlet}}

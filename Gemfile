@@ -6,6 +6,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'thin'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -13,9 +15,10 @@ gem 'pg'
 
 gem 'rails-api'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
+group :assets do
+  gem 'sass-rails', '~> 4.0.0' # if running rails 3.1 or greater
+  gem 'compass-rails'
+end
 gem 'mechanize'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -31,6 +34,10 @@ gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.g
 gem 'dotenv-rails'
 
 gem 'ember-rails'
+
+gem 'ember-auth-rails'
+
+gem 'ember-auth-source', '~> 8.0.1'
 
 gem 'foreman'
 

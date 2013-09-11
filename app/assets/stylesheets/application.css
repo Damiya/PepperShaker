@@ -10,9 +10,6 @@
  *
  *= require_self
  *= require bootstrap
+ *= require peppershaker
  *= require_tree .
  */
-
-body {
-    padding-top: 55px;
-}
