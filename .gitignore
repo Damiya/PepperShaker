@@ -15,9 +15,13 @@
 /log/*.log
 /tmp
 
+#Ignore local copies of ember/handlebars for IDE completion
 /vendor/assets/javascripts/ember*.js
 /vendor/assets/javascripts/handlebars.js
+
+#Ignore .env, which stores secret settings (secret key, user/pass, etc)
 /.env
+
 /.idea/*
 *.rbc
 *.sassc
