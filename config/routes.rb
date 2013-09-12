@@ -1,8 +1,14 @@
 PepperShaker::Application.routes.draw do
-  get "ember/index"
   root 'application#index'
 
   get 'scraper/scrape/:id' => 'scraper#scrape'
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      post 'session/new' => 'session#new'
+      post 'session/destroy' => 'session#destroy'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

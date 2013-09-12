@@ -1,6 +1,6 @@
 <form class="form-signin" {{action 'login' controller on="submit"}}>
     <h2 class="form-signin-heading">Please sign in</h2>
-    {{input placeholder="Username" autofocus="true" class="form-control"}}
-    {{input placeholder="Password" type="password" class="form-control"}}
+    {{input placeholder="Username" autofocus="true" class="form-control" valueBinding="username"}}
+    {{input placeholder="Password" type="password" class="form-control" valueBinding="password"}}
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
