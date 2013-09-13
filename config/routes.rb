@@ -1,12 +1,14 @@
 PepperShaker::Application.routes.draw do
+  devise_for :users, controllers: {sessions: 'sessions'}
   root 'application#index'
-
-  get 'scraper/scrape/:id' => 'scraper#scrape'
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      post 'session/new' => 'session#new'
-      post 'session/destroy' => 'session#destroy'
+      resource :champion do
+        member do
+          get 'show/:name' => 'champion#show'
+        end
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

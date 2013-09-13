@@ -1,5 +1,5 @@
 PepperShaker.Auth = Ember.Auth.create(
-  signInEndPoint: '/api/v1/session/new'
+  signInEndPoint: '/api/v1/session/create'
   signOutEndPoint: '/api/v1/session/destroy'
   tokenKey: 'auth_token'
   tokenIdKey: 'user_id'

@@ -17,14 +17,14 @@
                     <li><a href="#admin">Admin</a></li>
                 {{/if}}
             </ul>
-            <ul class="nav navbar-nav pull-right">
-                {{#if PepperShaker.Auth.signedIn}}
-                    <li><a href="#login">Login</a></li>
-                {{else}}
-                    <li>{{#link-to 'session.new'}}Login{{/link-to}}</li>
+            {{!--<ul class="nav navbar-nav pull-right">--}}
+                {{!--{{#if PepperShaker.Auth.signedIn}}--}}
+                    {{!--<li><a href="#login">Login</a></li>--}}
+                {{!--{{else}}--}}
+                    {{!--<li>{{#link-to 'session.create'}}Login{{/link-to}}</li>--}}
 
-                {{/if}}
-            </ul>
+                {{!--{{/if}}--}}
+            {{!--</ul>--}}
         </div>
         <!--/.nav-collapse -->
     </div>

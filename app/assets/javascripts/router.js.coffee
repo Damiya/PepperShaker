@@ -1,5 +1,9 @@
 PepperShaker.Router.map ()->
   @resource('session', ->
-    @route('new');
+    @route('create');
     @route('destroy');
+  )
+
+  @resource('user', ->
+    @route('create');
   )

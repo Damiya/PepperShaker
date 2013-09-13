@@ -11,7 +11,7 @@ gem 'thin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-gem 'pg'
+gem 'mysql2'
 
 gem 'rails-api'
 
@@ -19,6 +19,7 @@ group :assets do
   gem 'sass-rails', '~> 4.0.0' # if running rails 3.1 or greater
   gem 'compass-rails'
 end
+
 gem 'mechanize'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -47,9 +48,6 @@ gem 'foreman'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -60,6 +58,11 @@ end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem 'devise'                   # server-side authentication
+
+gem 'inherited_resources'      # for easy RESTful API controller scaffolding
+gem 'active_model_serializers' # works out of the box with ember-data
 
 # Use unicorn as the app server
 # gem 'unicorn'
