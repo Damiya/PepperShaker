@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20130912084422) do
 
   create_table "champions", force: true do |t|
     t.string   "name"
-    t.integer  "elo"
     t.integer  "wins"
     t.integer  "losses"
     t.boolean  "gets_hitboxed"
@@ -37,23 +36,23 @@ ActiveRecord::Schema.define(version: 20130912084422) do
     t.boolean  "has_fakes"
     t.boolean  "bad_ai"
     t.integer  "aggression_index"
+    t.integer  "total_bets"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "champions_fights", force: true do |t|
-    t.integer "fight_id"
-    t.integer "champion_id"
-  end
+  add_index "champions", ["name"], name: "index_champions_on_name", unique: true, using: :btree
 
   create_table "fights", force: true do |t|
-    t.datetime "time"
-    t.integer  "bets_one"
-    t.integer  "bets_two"
-    t.integer  "winner"
+    t.integer  "winner_id"
+    t.integer  "loser_id"
+    t.integer  "blue_champion_id"
+    t.integer  "red_champion_id"
+    t.integer  "bets_red"
+    t.integer  "bets_blue"
     t.integer  "bet_count"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.integer  "winner"
+    t.boolean  "champions_updated"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

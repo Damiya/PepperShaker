@@ -2,7 +2,6 @@ class CreateChampions < ActiveRecord::Migration
   def change
     create_table :champions do |t|
       t.string :name
-      t.integer :elo
       t.integer :wins
       t.integer :losses
       t.boolean :gets_hitboxed
@@ -24,8 +23,10 @@ class CreateChampions < ActiveRecord::Migration
       t.boolean :has_fakes
       t.boolean :bad_ai
       t.integer :aggression_index
+      t.integer :total_bets
 
       t.timestamps
     end
+    add_index :champions, :name, unique: true
   end
 end

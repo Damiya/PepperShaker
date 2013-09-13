@@ -2,11 +2,20 @@ PepperShaker::Application.routes.draw do
   devise_for :users, controllers: {sessions: 'sessions'}
   root 'application#index'
 
+  #Hiding the url in env so I can scrape from an external site through a hidden url if i want
+  # Wait does that even work?
+  get ENV['SCRAPER_URL'] + '/scrape/:id' => 'scraper#scrape'
+
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resource :champion do
         member do
           get 'show/:name' => 'champion#show'
+        end
+      end
+      resource :fight do
+        member do
+          get 'show/:id' => 'fight#show'
         end
       end
     end

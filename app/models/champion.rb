@@ -1,7 +1,13 @@
 class Champion < ActiveRecord::Base
-  has_and_belongs_to_many :fights
+  has_many :fights
+  has_many :comments
 
-  def win_rate
-    losses/wins
+  after_initialize :init
+
+  private
+  def init
+    self.losses ||= 0
+    self.wins ||= 0
+    self.total_bets ||= 0
   end
 end
