@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130912084422) do
+ActiveRecord::Schema.define(version: 20130913123442) do
 
   create_table "champions", force: true do |t|
     t.string   "name"
@@ -43,9 +43,16 @@ ActiveRecord::Schema.define(version: 20130912084422) do
 
   add_index "champions", ["name"], name: "index_champions_on_name", unique: true, using: :btree
 
+  create_table "comments", force: true do |t|
+    t.integer  "champion_id"
+    t.integer  "user_id"
+    t.string   "text"
+    t.datetime "posted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fights", force: true do |t|
-    t.integer  "winner_id"
-    t.integer  "loser_id"
     t.integer  "blue_champion_id"
     t.integer  "red_champion_id"
     t.integer  "bets_red"
