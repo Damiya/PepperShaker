@@ -27,6 +27,7 @@ class CreateChampions < ActiveRecord::Migration
 
       t.timestamps
     end
+
     add_index :champions, :name, unique: true
   end
 end

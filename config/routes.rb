@@ -11,6 +11,7 @@ PepperShaker::Application.routes.draw do
       resource :champion do
         member do
           get 'show/:name' => 'champion#show'
+          get 'show/:name/fights' => 'champion#show_fights'
         end
       end
       resource :fight do
@@ -60,7 +61,7 @@ PepperShaker::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
