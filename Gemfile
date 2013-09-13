@@ -15,6 +15,8 @@ gem 'mysql2'
 
 gem 'rails-api'
 
+gem 'squeel'
+
 group :assets do
   gem 'sass-rails', '~> 4.0.0' # if running rails 3.1 or greater
   gem 'compass-rails'

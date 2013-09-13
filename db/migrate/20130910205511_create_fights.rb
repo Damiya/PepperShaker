@@ -7,7 +7,6 @@ class CreateFights < ActiveRecord::Migration
       t.integer :bets_blue
       t.integer :bet_count
       t.integer :winner #1 for red, 2 for blue
-      t.boolean :champions_updated
 
       t.timestamps
     end

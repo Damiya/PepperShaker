@@ -1,5 +1,5 @@
 PepperShaker::Application.routes.draw do
-  devise_for :users, controllers: {sessions: 'sessions'}
+ # devise_for :users, controllers: {sessions: 'sessions'}
   root 'application#index'
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want
@@ -12,6 +12,8 @@ PepperShaker::Application.routes.draw do
         member do
           get 'show/:name' => 'champion#show'
           get 'show/:name/fights' => 'champion#show_fights'
+          get 'show/:name/wins' => 'champion#show_wins'
+          get 'show/:name/losses' => 'champion#show_losses'
         end
       end
       resource :fight do

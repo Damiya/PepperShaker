@@ -67,8 +67,8 @@ class ScraperController < ApplicationController
 
       fight_entry = Fight.new(bet_count: bet_count, bets_red: red_value, bets_blue: blue_value)
 
-      fight_entry.blue_champion_id=blue_champ.id
-      fight_entry.red_champion_id =red_champ.id
+      fight_entry.blue_champion = blue_champ
+      fight_entry.red_champion  =red_champ
 
       if winner_color == 'bluetext'
         fight_entry.winner = 2
