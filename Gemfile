@@ -11,7 +11,7 @@ gem 'thin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-gem 'mysql2'
+gem 'pg'
 
 gem 'rails-api'
 

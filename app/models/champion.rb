@@ -2,7 +2,7 @@ class Champion < ActiveRecord::Base
   has_many :fights
   has_many :comments
 
-  after_initialize :init
+  after_create :init
 
   private
   def init

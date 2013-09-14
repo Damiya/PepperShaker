@@ -1,29 +1,34 @@
 PepperShaker::Application.routes.draw do
- # devise_for :users, controllers: {sessions: 'sessions'}
+  get "errata/stats"
+  # devise_for :users, controllers: {sessions: 'sessions'}
   root 'application#index'
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want
-  # Wait does that even work?
-  get ENV['SCRAPER_URL'] + '/scrape/:id' => 'scraper#scrape'
+  #TODO: Undisable this when I actually build in some more sane scraping
+  #get ENV['SCRAPER_URL'] + '/scrape/:id' => 'scraper#scrape'
 
-  namespace :api, defaults: {format: 'json'} do
+  namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resource :champion do
         member do
-          get 'show/:name' => 'champion#show'
-          get 'show/:name/fights' => 'champion#show_fights'
-          get 'show/:name/wins' => 'champion#show_wins'
-          get 'show/:name/losses' => 'champion#show_losses'
+          get 'list_names' => 'champion#list_names'
+          get 'show/by_name/:name' => 'champion#show_by_name', :constraints => { :name => /[^\/]+/ }
+          get 'show/by_name/:name/fights' => 'champion#show_fights', :constraints => { :name => /[^\/]+/ }
+          get 'show/by_name/:name/wins' => 'champion#show_wins', :constraints => { :name => /[^\/]+/ }
+          get 'show/by_name/:name/losses' => 'champion#show_losses', :constraints => { :name => /[^\/]+/ }
+          get 'show/by_id/:id' => 'champion#show_by_id', :constraints => { :id => /[0-9]+/ }
+          get 'show/by_id/:id/fights' => 'champion#show_fights', :constraints => { :id => /[0-9]+/ }
+          get 'show/by_id/:id/wins' => 'champion#show_wins', :constraints => { :id => /[0-9]+/ }
+          get 'show/by_id/:id/losses' => 'champion#show_losses', :constraints => { :id => /[0-9]+/ }
         end
-      end
-      resource :matchup do
-        get 'compare/:champ_one/:champ_two' => 'matchup#compare'
       end
       resource :fight do
         member do
-          get 'show/:id' => 'fight#show'
+          get 'show/:id' => 'fight#show', :constraints => { :id => /[0-9]+/ }
+          get 'show/:champ_one/:champ_two' => 'fight#compare', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
         end
       end
+      get 'stats' => 'errata#stats'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
