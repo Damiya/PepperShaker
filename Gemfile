@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 group :production do
   gem 'rails_12factor'
-  gem 'unicorn'
+  gem 'unicorn', :require => false
 end
 
 
