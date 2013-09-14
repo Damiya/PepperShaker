@@ -1,8 +1,7 @@
 common: &common
-  adapter: mysql2
+  adapter: postgresql
   pool: 5
   timeout: 5000
-  username: peppershaker
 
 development:
   <<: *common

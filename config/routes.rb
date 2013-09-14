@@ -16,6 +16,9 @@ PepperShaker::Application.routes.draw do
           get 'show/:name/losses' => 'champion#show_losses'
         end
       end
+      resource :matchup do
+        get 'compare/:champ_one/:champ_two' => 'matchup#compare'
+      end
       resource :fight do
         member do
           get 'show/:id' => 'fight#show'
