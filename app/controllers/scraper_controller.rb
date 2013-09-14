@@ -79,7 +79,7 @@ class ScraperController < ApplicationController
       fight_entry.update_champions
       fight_entry.save
     rescue => error
-      logger.warn(error)
+      logger.warn(error.backtrace)
     end
 
   end
