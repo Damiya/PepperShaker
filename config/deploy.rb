@@ -5,7 +5,7 @@ require 'bundler/capistrano'
 set :domain, 'apeppershaker.com'
 set :scm, :git
 set :repository, 'git@github.com:Damiya/PepperShaker.git'
-set :branch, 'master'
+set :branch, 'origin/master'
 ssh_options[:forward_agent] = false
 set :migrate_target, :current
 set :rails_env, 'production'
