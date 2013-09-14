@@ -43,3 +43,8 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+mysql-connector*
+public/assets/application*
+public/assets/bootstrap/glyphicons-halflings-regular*
+public/assets/manifest*
+public/assets/templates/application*
