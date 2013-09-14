@@ -4,7 +4,9 @@ ruby '2.0.0'
 
 group :production do
   gem 'rails_12factor'
+  gem 'unicorn'
 end
+
 
 gem 'thin'
 
@@ -61,16 +63,12 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'devise'                   # server-side authentication
+gem 'devise' # server-side authentication
 
-gem 'inherited_resources'      # for easy RESTful API controller scaffolding
+gem 'inherited_resources' # for easy RESTful API controller scaffolding
 gem 'active_model_serializers' # works out of the box with ember-data
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :development do
+  gem 'rvm-capistrano'
+  gem 'capistrano'
+end
