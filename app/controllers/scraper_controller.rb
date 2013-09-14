@@ -78,7 +78,7 @@ class ScraperController < ApplicationController
 
       fight_entry.update_champions
       fight_entry.save
-    rescue Error => error
+    rescue => error
       logger.warn(error)
     end
 
