@@ -13,11 +13,7 @@ class Api::V1::ChampionController < ApplicationController
     champ = Champion.find_by_name(params[:name])
     if champ
       fights = Fight.where('blue_champion_id = ? OR red_champion_id = ?', champ.id, champ.id)
-      if fights
-        render :json => {fights: fights}
-      else
-        head 404
-      end
+      render :json => { fights: fights }
     else
       head 404
     end
@@ -27,12 +23,8 @@ class Api::V1::ChampionController < ApplicationController
   def show_wins
     champ = Champion.find_by_name(params[:name])
     if champ
-      fights = Fight.where{(blue_champion_id==champ.id) & (winner==2) | (red_champion_id==champ.id) & (winner==1)}
-      if fights
-        render :json => {fights: fights}
-      else
-        head 404
-      end
+      fights = Fight.where { (blue_champion_id==champ.id) & (winner==2) | (red_champion_id==champ.id) & (winner==1) }
+      render :json => { fights: fights }
     else
       head 404
     end
@@ -41,12 +33,8 @@ class Api::V1::ChampionController < ApplicationController
   def show_losses
     champ = Champion.find_by_name(params[:name])
     if champ
-      fights = Fight.where{(blue_champion_id==champ.id) & (winner==1) | (red_champion_id==champ.id) & (winner==2)}
-      if fights
-        render :json => {fights: fights}
-      else
-        head 404
-      end
+      fights = Fight.where { (blue_champion_id==champ.id) & (winner==1) | (red_champion_id==champ.id) & (winner==2) }
+      render :json => { fights: fights }
     else
       head 404
     end
