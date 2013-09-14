@@ -6,8 +6,13 @@ class Champion < ActiveRecord::Base
 
   private
   def init
-    self.losses ||= 0
-    self.wins ||= 0
-    self.total_bets ||= 0
+    begin
+      self.losses ||= 0
+      self.wins ||= 0
+      self.total_bets ||= 0
+    rescue ActiveRecord::MissingAttributeError
+      # ignored
+    end
+
   end
 end
