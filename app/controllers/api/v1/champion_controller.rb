@@ -44,7 +44,7 @@ class Api::V1::ChampionController < ApplicationController
 
     output = Jbuilder.encode do |json|
       champions.each do |champion|
-        json.send("#{champion.name}".to_sym,champion.id)
+        json.set! champion.name, champion.id
       end
     end
     render json: output
