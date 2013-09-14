@@ -7,8 +7,8 @@ class Api::V1::FightController < ApplicationController
   end
 
   def compare_by_name
-    champ_one = Champion.find_by_name(params[:champ_one])
-    champ_two = Champion.find_by_name(params[:champ_two])
+    champ_one = Champion.find_by_name(params[:champ_one].downcase)
+    champ_two = Champion.find_by_name(params[:champ_two].downcase)
 
     render_fight(champ_one, champ_two)
   end

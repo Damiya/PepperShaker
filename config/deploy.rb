@@ -2,9 +2,9 @@
 require "rvm/capistrano"
 require 'bundler/capistrano'
 
-set :bundle_dir,     ""         # install into "system" gems
-set :bundle_flags,   "--quiet --no-deployment"  # no verbose output
-set :bundle_without, []         # bundle all gems (even dev & test)
+set :bundle_dir, "" # install into "system" gems
+set :bundle_flags, "--quiet --no-deployment" # no verbose output
+set :bundle_without, [] # bundle all gems (even dev & test)
 
 set :domain, 'apeppershaker.com'
 set :scm, :git
@@ -33,7 +33,7 @@ set(:current_revision) { capture("cd #{current_path}; git rev-parse --short HEAD
 set(:latest_revision) { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
 set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEAD@{1}").strip }
 
-default_environment["RAILS_ENV"]    = :production
+default_environment["RAILS_ENV"] = :production
 
 default_environment["PATH"]         = "--"
 default_environment["GEM_HOME"]     = "--"
@@ -107,12 +107,8 @@ namespace :deploy do
 
   desc "Zero-downtime restart of Unicorn"
   task :restart, roles: :app do
-    if remote_file_exists?("/tmp/#{unicorn_pid}")
-      puts "Killing /tmp/#{unicorn_pid}"
-      run "kill -s USR2 `cat /tmp/#{unicorn_pid}`"
-    else
-      start
-    end
+    puts "Killing /tmp/#{unicorn_pid}"
+    run "kill -s USR2 `cat /tmp/#{unicorn_pid}`"
   end
 
   desc "Start unicorn"
@@ -147,4 +143,14 @@ end
 
 def run_rake(cmd)
   run "cd #{current_path}; #{rake} #{cmd}"
+end
+
+def remote_file_exists?(path)
+  results = []
+
+  invoke_command("if [ -e '#{path}' ]; then echo -n 'true'; fi") do |ch, stream, out|
+    results << (out == 'true')
+  end
+
+  results.all?
 end
