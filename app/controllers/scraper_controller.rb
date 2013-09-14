@@ -78,8 +78,8 @@ class ScraperController < ApplicationController
 
       fight_entry.update_champions
       fight_entry.save
-    rescue
-      logger.warn('Failed to process the element: ' + element)
+    rescue Error => error
+      logger.warn(error)
     end
 
   end
