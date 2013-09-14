@@ -3,7 +3,7 @@ require "rvm/capistrano"
 require 'bundler/capistrano'
 
 set :bundle_dir,     ""         # install into "system" gems
-set :bundle_flags,   "--quiet"  # no verbose output
+set :bundle_flags,   "--quiet --no-deployment"  # no verbose output
 set :bundle_without, []         # bundle all gems (even dev & test)
 
 set :domain, 'apeppershaker.com'

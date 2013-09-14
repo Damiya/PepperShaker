@@ -3,9 +3,9 @@ class Api::V1::ErrataController < ApplicationController
     num_fights           = Fight.count
     num_champions        = Champion.count
     all_champs           = Champion.all
-    most_total_bet_champs = all_champs.order(total_bets: :desc)
-    most_wins_champ      = all_champs.order(wins: :desc)
-    most_losses_champ    = all_champs.order(losses: :desc)
+    most_total_bet_champs = all_champs.order(total_bets: :desc).first!
+    most_wins_champ      = all_champs.order(wins: :desc).first!
+    most_losses_champ    = all_champs.order(losses: :desc).first
 
     render :json => { num_fights:     num_fights, num_champions: num_champions,
                       most_total_bet: { name: most_total_bet_champs.name, amount: most_total_bet_champs.total_bets },
