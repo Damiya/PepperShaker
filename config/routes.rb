@@ -26,7 +26,8 @@ PepperShaker::Application.routes.draw do
       end
       resource :fight do
         member do
-          get 'show/:champ_one/:champ_two' => 'fight#compare', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
+          get 'show/by_name/:champ_one/:champ_two' => 'fight#compare_by_name', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
+          get 'show/by_id/:champ_one/:champ_two' => 'fight#compare_by_id', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
         end
       end
       get 'stats' => 'errata#stats'
