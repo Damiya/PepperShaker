@@ -15,7 +15,7 @@ set :migrate_target, :current
 set :rails_env, 'production'
 set :deploy_to, '/home/deployer/apps/peppershaker'
 set :normalize_asset_timestamps, false
-set :unicorn_pid, "unicorn.peppershaker.pid"
+set :unicorn_pid, 'unicorn.peppershaker.pid'
 set :user, 'deployer'
 set :group, 'staff'
 set :use_sudo, false
@@ -46,8 +46,7 @@ namespace :deploy do
   desc "Deploy your application"
   task :default do
     update
-    stop
-    start
+    restart
   end
 
   desc "Setup your git-based deployment app"

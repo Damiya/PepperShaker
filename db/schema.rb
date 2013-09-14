@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130913123442) do
+ActiveRecord::Schema.define(version: 20130914205206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,10 @@ ActiveRecord::Schema.define(version: 20130913123442) do
     t.integer  "winner"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "match_id"
   end
+
+  add_index "fights", ["match_id"], name: "index_fights_on_match_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
