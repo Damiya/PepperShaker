@@ -11,7 +11,7 @@ PepperShaker::Application.routes.draw do
     namespace :v1 do
       resource :champion do
         member do
-          get 'list_names' => 'champion#list_names'
+          get 'list_champions' => 'champion#list_champions'
           get 'show/by_name/:name' => 'champion#show_by_name', :constraints => { :name => /[^\/]+/ }
           get 'show/by_name/:name/fights' => 'champion#show_fights_by_name', :constraints => { :name => /[^\/]+/ }
           get 'show/by_name/:name/wins' => 'champion#show_wins_by_name', :constraints => { :name => /[^\/]+/ }

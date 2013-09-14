@@ -39,9 +39,15 @@ class Api::V1::ChampionController < ApplicationController
     render_losses(champ)
   end
 
-  def list_names
-    names = Champion.select('id, name')
-    render :json => { names: names }
+  def list_champions
+    champions = Champion.select('id, name')
+
+    output = Jbuilder.encode do |json|
+      champions.each do |champion|
+        json.send("#{champion.name}".to_sym,champion.id)
+      end
+    end
+    render json: output
   end
 
   private
