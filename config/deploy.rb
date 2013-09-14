@@ -15,7 +15,7 @@ set :migrate_target, :current
 set :rails_env, 'production'
 set :deploy_to, '/home/deployer/apps/peppershaker'
 set :normalize_asset_timestamps, false
-
+set :unicorn_pid, "unicorn.peppershaker.pid"
 set :user, 'deployer'
 set :group, 'staff'
 set :use_sudo, false
@@ -107,8 +107,13 @@ namespace :deploy do
   end
 
   desc "Zero-downtime restart of Unicorn"
-  task :restart, :except => { :no_release => true } do
-    run "kill -s USR2 `cat /tmp/unicorn.peppershaker.pid`"
+  task :restart, roles: :app do
+    if remote_file_exists?("/tmp/#{unicorn_pid}")
+      puts "Killing /tmp/#{unicorn_pid}"
+      run "kill -s USR2 `cat /tmp/#{unicorn_pid}`"
+    else
+      start
+    end
   end
 
   desc "Start unicorn"
@@ -118,7 +123,7 @@ namespace :deploy do
 
   desc "Stop unicorn"
   task :stop, :except => { :no_release => true } do
-    run "kill -s QUIT `cat /tmp/unicorn.peppershaker.pid`"
+    run "kill -s QUIT `cat /tmp/#{unicorn_pid}`"
   end
 
   namespace :rollback do
