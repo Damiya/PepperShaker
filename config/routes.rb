@@ -1,5 +1,4 @@
 PepperShaker::Application.routes.draw do
-  get "errata/stats"
   # devise_for :users, controllers: {sessions: 'sessions'}
   root 'application#index'
 
