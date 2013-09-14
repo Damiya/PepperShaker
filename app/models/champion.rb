@@ -10,7 +10,7 @@ class Champion < ActiveRecord::Base
       self.losses ||= 0
       self.wins ||= 0
       self.total_bets ||= 0
-    rescue ActiveRecord::MissingAttributeError
+    rescue => error
       # ignored
     end
 
