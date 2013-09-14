@@ -4,7 +4,7 @@ PepperShaker::Application.routes.draw do
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want
   #TODO: Undisable this when I actually build in some more sane scraping
-  #get ENV['SCRAPER_URL'] + '/scrape/:id' => 'scraper#scrape'
+  get ENV['SCRAPER_URL'] + '/scrape/:id' => 'scraper#scrape'
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do

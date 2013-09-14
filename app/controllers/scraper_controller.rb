@@ -58,8 +58,8 @@ class ScraperController < ApplicationController
       matchup      = element.children[0].children[0]
       bet_count    = element.children[8].text
       winner_color = element.children[2].children[0].attr('class')
-      red_name     = matchup.children[0].text
-      blue_name    = matchup.children[2].text
+      red_name     = matchup.children[0].text.downcase
+      blue_name    = matchup.children[2].text.downcase
       red_value    = matchup.children[1].text.gsub(/[^0-9]/, '')
       blue_value   = matchup.children[3].text.gsub(/[^0-9]/, '')
       red_champ    = Champion.find_or_create_by(name: red_name)
