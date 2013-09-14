@@ -1,22 +1,22 @@
 class Api::V1::ChampionController < ApplicationController
   def show_by_name
     # Supposedly Rails sanitizes 'find_by_blah'? Consider me skeptical
-    champ = Champion.find_by_name(params[:name])
+    champ = Champion.find_by_name(params[:name].downcase)
     render json: champ
   end
 
   def show_fights_by_name
-    champ  = Champion.find_by_name(params[:name])
+    champ  = Champion.find_by_name(params[:name].downcase)
     render_fights(champ)
   end
 
   def show_wins_by_name
-    champ  = Champion.find_by_name(params[:name])
+    champ  = Champion.find_by_name(params[:name].downcase)
     render_wins(champ)
   end
 
   def show_losses_by_name
-    champ  = Champion.find_by_name(params[:name])
+    champ  = Champion.find_by_name(params[:name].downcase)
     render_losses(champ)
   end
 

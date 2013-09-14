@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :comments
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :timeoutable
+  #devise :database_authenticatable, :registerable,
+ #        :recoverable, :rememberable, :trackable, :validatable,
+ #        :timeoutable
 
-  validates :email, presence: true
+#  validates :email, presence: true
 end
