@@ -1,7 +1,7 @@
 class EloUtil
 
-  def self.compute_score(rating1, rating2)
-    1.0 / ( 1.0 + ( 10.0 ** ((rating1 - rating2) / 400) ) )
+  def self.compute_score(self_rating, opponent_rating)
+    1.0 / ( 1.0 + ( 10.0 ** ((opponent_rating - self_rating) / 400) ) )
   end
 
   # @param [Champion] champion
@@ -9,13 +9,13 @@ class EloUtil
     k=0
 
     if champion.total_matches <= 10
-      k = 100
+      k = 32
     end
     if champion.total_matches <= 30 && champion.total_matches > 10
-      k = 50
+      k = 16
     end
     if champion.total_matches > 30
-      k = 10
+      k = 8
     end
 
     k

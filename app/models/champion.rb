@@ -4,22 +4,6 @@ class Champion < ActiveRecord::Base
 
   after_initialize :init
 
-  # @param [Champion] opponent
-  def add_win(opponent)
-    self.wins += 1
-    change = EloUtil::compute_k(self) * (1 - EloUtil::compute_score(self.elo, opponent.elo))
-    logger.info("#{self.name} GAIN #{change}")
-    self.elo += change
-  end
-
-  # @param [Champion] opponent
-  def add_loss(opponent)
-    self.losses += 1
-    change = EloUtil::compute_k(self) * (0 - EloUtil::compute_score(self.elo, opponent.elo))
-    logger.info("#{self.name} LOSS #{change}")
-    self.elo += change
-  end
-
   def total_matches
     self.wins + self.losses
   end
