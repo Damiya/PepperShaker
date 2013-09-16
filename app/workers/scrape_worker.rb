@@ -92,8 +92,8 @@ class ScrapeWorker
           blue_champ.add_loss(red_champ)
         end
 
-        blue_champ.total_bets += blue_value
-        red_champ.total_bets += red_value
+        blue_champ.total_bets += blue_value.to_i
+        red_champ.total_bets += red_value.to_i
         blue_champ.save
         red_champ.save
 
