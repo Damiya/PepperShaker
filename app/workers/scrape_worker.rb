@@ -3,16 +3,16 @@ class ScrapeWorker
   include Sidekiq::Worker
 
   require 'mechanize'
+  @@agent             = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Windows Mozilla'
+  }
+  @@scraper_logged_in = false
 
   def perform(id)
-    @agent             = Mechanize.new { |agent|
-      agent.user_agent_alias = 'Windows Mozilla'
-    }
-    @scraper_logged_in = false
 
-    unless @scraper_logged_in
-      @agent.get('http://www.saltybet.com') do |root_page|
-        login_page = @agent.click(root_page.link_with(:href => '../authenticate?signin=1'))
+    unless @@scraper_logged_in
+      @@agent.get('http://www.saltybet.com') do |root_page|
+        login_page = @@agent.click(root_page.link_with(:href => '../authenticate?signin=1'))
 
         logged_in = login_page.form_with(:id => 'signinform') { |login_form|
           login_form.email = ENV['SALTY_USER'] || 'PutYourEmailHereBuddy'
@@ -20,18 +20,18 @@ class ScrapeWorker
         }.click_button
 
         if logged_in.filename[0, 4] == 'auth'
-          @scraper_logged_in = false
+          @@scraper_logged_in = false
           logger.fatal 'Failed to login'
           exit(-1)
         else
           logger.info 'Successfully logged in'
-          @scraper_logged_in = true
+          @@scraper_logged_in = true
         end
       end
     end
 
-    if @scraper_logged_in
-      @agent.get('http://www.saltybet.com/stats?tournament_id='+id) do |tourneypage|
+    if @@scraper_logged_in
+      @@agent.get('http://www.saltybet.com/stats?tournament_id='+id) do |tourneypage|
         get_tournament_entries(tourneypage)
       end
     end
