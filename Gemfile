@@ -7,6 +7,7 @@ group :production do
   gem 'unicorn', :require => false
 end
 
+gem 'sidekiq'
 
 gem 'thin'
 

@@ -5,7 +5,6 @@ class CreateChampions < ActiveRecord::Migration
       t.integer :elo
       t.integer :wins
       t.integer :losses
-      t.integer :elo_confidence
       t.boolean :gets_hitboxed
       t.boolean :undersized_hitbox
       t.boolean :oversized_hitbox
