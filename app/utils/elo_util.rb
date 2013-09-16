@@ -7,6 +7,18 @@ class EloUtil
 
   # @param [Champion] champion
   def self.compute_k(champion)
-    80 / [champion.total_matches,1].max
+    k=0
+
+    if champion.total_matches <= 5
+      k = 30
+    end
+    if champion.total_matches <= 10 && champion.total_matches > 5
+      k = 15
+    end
+    if champion.total_matches > 10
+      k = 10
+    end
+
+    k
   end
 end

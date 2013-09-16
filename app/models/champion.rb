@@ -6,11 +6,13 @@ class Champion < ActiveRecord::Base
 
   # @param [Champion] opponent
   def add_win(opponent)
+    self.wins += 1
     self.elo += EloUtil::compute_k(self) * (1 - EloUtil::compute_score(self.elo, opponent.elo))
   end
 
   # @param [Champion] opponent
   def add_loss(opponent)
+    self.losses += 1
     self.elo += EloUtil::compute_k(self) * (0 - EloUtil::compute_score(self.elo, opponent.elo))
   end
 
