@@ -4,12 +4,12 @@ class ScrapeWorker
 
   require 'mechanize'
 
-  @agent             = Mechanize.new { |agent|
-    agent.user_agent_alias = 'Windows Mozilla'
-  }
-  @scraper_logged_in = false
-
   def perform(id)
+    @agent             = Mechanize.new { |agent|
+      agent.user_agent_alias = 'Windows Mozilla'
+    }
+    @scraper_logged_in = false
+
     unless @scraper_logged_in
       @agent.get('http://www.saltybet.com') do |root_page|
         login_page = @agent.click(root_page.link_with(:href => '../authenticate?signin=1'))
