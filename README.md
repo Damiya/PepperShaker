@@ -4,6 +4,12 @@ PepperShaker
 Purpose:
 To enhance my knowledge of Rails and EmberJS
 
+What:
+A stats tracking site for Saltybet.com
+
+Where:
+http://www.apeppershaker.com
+
 Implementated with:
 Rails 4.0
 Bootstrap 3.0
