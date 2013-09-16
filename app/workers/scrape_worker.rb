@@ -31,7 +31,7 @@ class ScrapeWorker
     end
 
     if @scraper_logged_in
-      @agent.get('http://www.saltybet.com/stats?tournament_id='+params[:id]) do |tourneypage|
+      @agent.get('http://www.saltybet.com/stats?tournament_id='+id) do |tourneypage|
         get_tournament_entries(tourneypage)
       end
     end
