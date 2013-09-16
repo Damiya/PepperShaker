@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20130914205206) do
 
   create_table "champions", force: true do |t|
     t.string   "name"
+    t.integer  "elo"
     t.integer  "wins"
     t.integer  "losses"
+    t.integer  "elo_confidence"
     t.boolean  "gets_hitboxed"
     t.boolean  "undersized_hitbox"
     t.boolean  "oversized_hitbox"

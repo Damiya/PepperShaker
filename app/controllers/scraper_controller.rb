@@ -84,11 +84,17 @@ class ScraperController < ApplicationController
 
         if winner_color == 'bluetext'
           fight_entry.winner = 2
+          red_champ.add_loss(blue_champ)
+          blue_champ.add_win(red_champ)
         else
           fight_entry.winner = 1
+          red_champ.add_win(blue_champ)
+          blue_champ.add_loss(red_champ)
         end
 
-        fight_entry.update_champions
+        blue_champ.save
+        red_champ.save
+
         fight_entry.save
         return true
       end
