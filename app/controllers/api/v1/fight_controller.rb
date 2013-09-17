@@ -23,6 +23,7 @@ class Api::V1::FightController < ApplicationController
   def redirect_to_hightower
     champ_one = Champion.find_by_id(params[:champ_one])
     champ_two = Champion.find_by_id(params[:champ_two])
+
     redirect_to "http://fightmoney.herokuapp.com/stats/#/#{champ_one.name}/#{champ_two.name}/"
   end
 
@@ -44,26 +45,6 @@ class Api::V1::FightController < ApplicationController
           end
         end
       end
-
-
-      #  rematch_check = Fight.where { (blue_champion_id==champ_one.id & (red_champion_id==champ_two.id) | (blue_champion_id==champ_two.id) & (red_champion_id==champ_one.id) }
-      #
-      #  if rematch_check.count == 2
-      #
-      #  end
-      #
-      #  output = Jbuilder.encode do |json|
-      #    json.left champ_one
-      #    json.right champ_two
-      #
-      #    if rematch_check && rematch_check_two
-      #      json.rematch 0
-      #    elsif rematch_check
-      #      json.rematch
-      #    end
-      #    render :json => { left: champ_one, right: champ_two }
-      #  end
-      #end
     end
 
     render json: output
