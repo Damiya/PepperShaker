@@ -11,7 +11,7 @@ class Champion < ActiveRecord::Base
   private
   def init
     begin
-      self.elo        ||= 0
+      self.elo        ||= 700
       self.losses     ||= 0
       self.wins       ||= 0
       self.total_bets ||= 0
