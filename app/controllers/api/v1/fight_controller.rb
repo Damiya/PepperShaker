@@ -21,6 +21,11 @@ class Api::V1::FightController < ApplicationController
 
   private
   def render_fight(champ_one,champ_two)
+    rematch_check = Fight.where(:blue_champion_id => champ_one.id, :red_champion_id => champ_two.id )
+    rematch_check_two = Fight.where(:red_champion_id => champ_one.id, :blue_champion_id => champ_two.id)
+    if rematch_check || rematch_check_two
+      print("hello world")
+    end
     render :json => { left: champ_one, right: champ_two }
   end
 end
