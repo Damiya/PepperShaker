@@ -39,6 +39,11 @@ class Api::V1::ChampionController < ApplicationController
     render_losses(champ)
   end
 
+  def redirect_to_hightower
+    champ = Champion.find_by_id(params[:id])
+    redirect_to "http://fightmoney.herokuapp.com/stats/#/#{champ.name}/"
+  end
+
   def list_champions
     champions = Champion.select('id, name')
 

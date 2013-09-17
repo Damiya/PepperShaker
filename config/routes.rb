@@ -30,8 +30,12 @@ PepperShaker::Application.routes.draw do
         end
       end
       get 'stats' => 'errata#stats'
+      get 's/f/:champ_one/:champ_two' => 'fight#redirect_to_hightower', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
+      get 's/c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /[0-9]+/}
     end
   end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

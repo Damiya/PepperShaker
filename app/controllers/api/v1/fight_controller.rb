@@ -20,6 +20,12 @@ class Api::V1::FightController < ApplicationController
     render_fight(champ_one, champ_two)
   end
 
+  def redirect_to_hightower
+    champ_one = Champion.find_by_id(params[:champ_one])
+    champ_two = Champion.find_by_id(params[:champ_two])
+    redirect_to "http://fightmoney.herokuapp.com/stats/#/#{champ_one.name}/#{champ_two.name}/"
+  end
+
   private
   def render_fight(champ_one, champ_two)
     output = Jbuilder.encode do |json|
