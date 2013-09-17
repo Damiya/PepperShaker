@@ -9,13 +9,13 @@ class EloUtil
     k=0
 
     if champion.total_matches <= 10
-      k = 100
-    end
-    if champion.total_matches <= 30 && champion.total_matches > 10
       k = 50
     end
+    if champion.total_matches <= 30 && champion.total_matches > 10
+      k = 25
+    end
     if champion.total_matches > 30
-      k = 15
+      k = 10
     end
 
     k
