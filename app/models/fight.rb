@@ -27,5 +27,10 @@ class Fight < ActiveRecord::Base
     blue_champion.save
   end
 
+  def won_fight?(champion)
+    (self.blue_champion_id==champion.id && self.winner==2) ||
+    (self.red_champion_id==champion.id && self.winner==1)
+  end
+
 end
 

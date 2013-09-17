@@ -16,16 +16,69 @@ class Api::V1::FightController < ApplicationController
   def compare_by_id
     champ_one = Champion.find_by_id(params[:champ_one])
     champ_two = Champion.find_by_id(params[:champ_two])
+
     render_fight(champ_one, champ_two)
   end
 
   private
-  def render_fight(champ_one,champ_two)
-    rematch_check = Fight.where(:blue_champion_id => champ_one.id, :red_champion_id => champ_two.id )
-    rematch_check_two = Fight.where(:red_champion_id => champ_one.id, :blue_champion_id => champ_two.id)
-    if rematch_check || rematch_check_two
-      print("hello world")
+  def render_fight(champ_one, champ_two)
+
+    if champ_one == nil || champ_two == nil
+      head 404
+    else
+      rematch_check     = Fight.where({ blue_champion_id: champ_one.id, red_champion_id: champ_two.id })
+      rematch_check_two = Fight.where({ blue_champion_id: champ_two.id, red_champion_id: champ_one.id })
+
+      output = Jbuilder.encode do |json|
+        json.left champ_one
+        json.right champ_two
+
+        if rematch_check.any? || rematch_check_two.any?
+          json.rematch do
+            left_has_won, right_has_won = get_rematch_value(rematch_check, rematch_check_two, champ_one, champ_two)
+            json.left_has_won left_has_won
+            json.right_has_won right_has_won
+          end
+        end
+      end
+      render json: output
+      #  rematch_check = Fight.where { (blue_champion_id==champ_one.id & (red_champion_id==champ_two.id) | (blue_champion_id==champ_two.id) & (red_champion_id==champ_one.id) }
+      #
+      #  if rematch_check.count == 2
+      #
+      #  end
+      #
+      #  output = Jbuilder.encode do |json|
+      #    json.left champ_one
+      #    json.right champ_two
+      #
+      #    if rematch_check && rematch_check_two
+      #      json.rematch 0
+      #    elsif rematch_check
+      #      json.rematch
+      #    end
+      #    render :json => { left: champ_one, right: champ_two }
+      #  end
+      #end
     end
-    render :json => { left: champ_one, right: champ_two }
+  end
+
+  #Dirty hack
+  def get_rematch_value(rematch_check, rematch_check_two, champ_one, champ_two)
+    one_has_won  = nil
+    two_has_won  = nil
+    rematch_type = 0
+
+    rematch_check.each do |fight|
+      one_has_won ||= fight.won_fight?(champ_one)
+      two_has_won ||= fight.won_fight?(champ_two)
+    end
+
+    rematch_check_two.each do |fight|
+      one_has_won ||= fight.won_fight?(champ_one)
+      two_has_won ||= fight.won_fight?(champ_two)
+    end
+
+    return one_has_won, two_has_won
   end
 end
