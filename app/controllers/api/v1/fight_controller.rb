@@ -22,16 +22,13 @@ class Api::V1::FightController < ApplicationController
 
   private
   def render_fight(champ_one, champ_two)
+    output = Jbuilder.encode do |json|
+      json.left champ_one
+      json.right champ_two
 
-    if champ_one == nil || champ_two == nil
-      head 404
-    else
-      rematch_check     = Fight.where({ blue_champion_id: champ_one.id, red_champion_id: champ_two.id })
-      rematch_check_two = Fight.where({ blue_champion_id: champ_two.id, red_champion_id: champ_one.id })
-
-      output = Jbuilder.encode do |json|
-        json.left champ_one
-        json.right champ_two
+      if champ_one != nil && champ_two != nil
+        rematch_check     = Fight.where({ blue_champion_id: champ_one.id, red_champion_id: champ_two.id })
+        rematch_check_two = Fight.where({ blue_champion_id: champ_two.id, red_champion_id: champ_one.id })
 
         if rematch_check.any? || rematch_check_two.any?
           json.rematch do
@@ -41,7 +38,8 @@ class Api::V1::FightController < ApplicationController
           end
         end
       end
-      render json: output
+
+
       #  rematch_check = Fight.where { (blue_champion_id==champ_one.id & (red_champion_id==champ_two.id) | (blue_champion_id==champ_two.id) & (red_champion_id==champ_one.id) }
       #
       #  if rematch_check.count == 2
@@ -61,9 +59,11 @@ class Api::V1::FightController < ApplicationController
       #  end
       #end
     end
+
+    render json: output
   end
 
-  #Dirty hack
+#Dirty hack
   def get_rematch_value(rematch_check, rematch_check_two, champ_one, champ_two)
     one_has_won  = nil
     two_has_won  = nil
@@ -81,4 +81,5 @@ class Api::V1::FightController < ApplicationController
 
     return one_has_won, two_has_won
   end
+
 end
