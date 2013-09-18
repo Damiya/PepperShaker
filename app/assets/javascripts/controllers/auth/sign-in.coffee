@@ -5,7 +5,6 @@ PepperShaker.AuthSignInController = Em.ObjectController.extend
 
   actions:
     login: ->
-      PepperShaker.Auth.set('email', this.get('email'))
       PepperShaker.Auth.signIn
         data:
           email:    @get 'email'

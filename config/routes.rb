@@ -4,19 +4,16 @@ PepperShaker::Application.routes.draw do
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want
   get ENV['SCRAPER_URL'] + '/scrape/:id' => 'scraper#scrape'
+  get ENV['SCRAPER_URL'] + '/cheat/:id' => 'scraper#cheat'
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resource :champion do
         member do
-          get 'show/by_name/:name' => 'champion#show_by_name', :constraints => { :name => /[^\/]+/ }
-          get 'show/by_name/:name/fights' => 'champion#show_fights_by_name', :constraints => { :name => /[^\/]+/ }
-          get 'show/by_name/:name/wins' => 'champion#show_wins_by_name', :constraints => { :name => /[^\/]+/ }
-          get 'show/by_name/:name/losses' => 'champion#show_losses_by_name', :constraints => { :name => /[^\/]+/ }
-          get 'show/by_id/:id' => 'champion#show_by_id', :constraints => { :id => /[0-9]+/ }
-          get 'show/by_id/:id/fights' => 'champion#show_fights_by_id', :constraints => { :id => /[0-9]+/ }
-          get 'show/by_id/:id/wins' => 'champion#show_wins_by_id', :constraints => { :id => /[0-9]+/ }
-          get 'show/by_id/:id/losses' => 'champion#show_losses_by_id', :constraints => { :id => /[0-9]+/ }
+          get ':id' => 'champion#show_by_id', :constraints => { :id => /[0-9]+/ }
+          get ':id/fights' => 'champion#show_fights_by_id', :constraints => { :id => /[0-9]+/ }
+          get ':id/wins' => 'champion#show_wins_by_id', :constraints => { :id => /[0-9]+/ }
+          get ':id/losses' => 'champion#show_losses_by_id', :constraints => { :id => /[0-9]+/ }
         end
         collection do
           get 'list' => 'champion#list_champions'
@@ -24,15 +21,22 @@ PepperShaker::Application.routes.draw do
       end
       resource :fight do
         member do
-          get 'show/by_name/:champ_one/:champ_two' => 'fight#compare_by_name', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
-          get 'show/by_id/:champ_one/:champ_two' => 'fight#compare_by_id', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
+          get 'by_name/:champ_one/:champ_two' => 'fight#compare_by_name', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
+          get 'by_id/:champ_one/:champ_two' => 'fight#compare_by_id', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
+        end
+      end
+      resource :user do
+        member do
+          get ':id' => 'user#show', :constraints => { :id => /[0-9]+/}
         end
       end
       get 'stats' => 'errata#stats'
-      get 's/f/:champ_one/:champ_two' => 'fight#redirect_to_hightower', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
-      get 's/c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /[0-9]+/}
+      get 'f/:champ_one/:champ_two' => 'fight#redirect_to_hightower', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
+      get 'c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /[0-9]+/}
     end
   end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -28,6 +28,8 @@ class Api::V1::FightController < ApplicationController
   end
 
   private
+  # @param [Champion] champ_one
+  # @param [Champion] champ_two
   def render_fight(champ_one, champ_two)
     output = Jbuilder.encode do |json|
       json.left champ_one
@@ -50,11 +52,14 @@ class Api::V1::FightController < ApplicationController
     render json: output
   end
 
-#Dirty hack
+  #TODO: Make the ugly go away
+  # @param [Fight] rematch_check
+  # @param [Fight] rematch_check_two
+  # @param [Champion] champ_one
+  # @param [Champion] champ_two
   def get_rematch_value(rematch_check, rematch_check_two, champ_one, champ_two)
     one_has_won  = nil
     two_has_won  = nil
-    rematch_type = 0
 
     rematch_check.each do |fight|
       one_has_won ||= fight.won_fight?(champ_one)

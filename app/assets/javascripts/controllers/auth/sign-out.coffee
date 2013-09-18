@@ -5,5 +5,3 @@ PepperShaker.AuthSignOutController = Em.Controller.extend
 
     logout: ->
       PepperShaker.Auth.signOut
-        data:
-          email: PepperShaker.Auth.get('email')

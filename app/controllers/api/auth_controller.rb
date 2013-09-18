@@ -3,8 +3,6 @@ module Api
 
     before_filter :authenticate_user_from_token!
 
-    before_filter :authenticate_user!
-
     protected
 
     def auth_only!
@@ -14,26 +12,27 @@ module Api
     end
 
     def validate_token!
-      compare_token
+      false unless resource_from_auth_token
     end
 
     def authenticate_user_from_token!
-      if compare_token
-        sign_in user, store: false
+      user = resource_from_auth_token
+      if user
+        # We bypass to avoid the callback chain which inappropriately inflates our signin numbers
+        sign_in user, store: false, bypass: true
       end
     end
 
     private
 
-    def compare_token
-      user_email = params[:email].presence
-      user = user_email && User.find_by_email(user_email)
+    def resource_from_auth_token
+      return unless params[:auth_token]
+      id, token = params[:auth_token].split('$')
+      user = User.find_by_id(id)
 
-      if user && Devise.secure_compare(user.authentication_token, params[:auth_token])
-        true
+      if user && Devise.secure_compare(user.authentication_token, token)
+        user
       end
-
-      false
     end
 
   end

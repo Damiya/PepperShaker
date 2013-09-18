@@ -12,13 +12,15 @@ class SessionsController < Devise::SessionsController
     resource.ensure_authentication_token
     data = {
         user_id:    resource.id,
-        auth_token: resource.authentication_token,
+        auth_token: "#{resource.id}$#{resource.authentication_token}",
     }
 
     if params[:remember]
       resource.remember_me!
       data[:remember_token] = remember_token(resource)
     end
+
+    sign_in resource
 
     render json: data, status: 201
   end
@@ -30,6 +32,8 @@ class SessionsController < Devise::SessionsController
     return invalid_credentials unless resource
 
     resource.reset_tokens!
+
+    sign_out resource
     render json: { user_id: resource.id }, status: 200
   end
 
@@ -59,10 +63,10 @@ class SessionsController < Devise::SessionsController
 
   # Major codesmell having this in btoh auth_controller and here, but I'm not sure how to handle the inheritance thing since this comes from devise.
   def resource_from_auth_token
-    user_email = params[:email].presence
-    user       = user_email && User.find_by_email(user_email)
+    id, token = params[:auth_token].split('$')
+    user = User.find_by_id(id)
 
-    if user && Devise.secure_compare(user.authentication_token, params[:auth_token])
+    if user && Devise.secure_compare(user.authentication_token, token)
       user
     end
   end

@@ -56,17 +56,21 @@ class Api::V1::ChampionController < ApplicationController
   end
 
   private
+  # @param [Champion] champ
   def render_fights(champ)
     fights = Fight.where('blue_champion_id = ? OR red_champion_id = ?', champ.id, champ.id)
     render :json => { fights: fights }
   end
 
   #TODO: Clean this code up
+
+  # @param [Champion] champ
   def render_wins(champ)
     fights = Fight.where { (blue_champion_id==champ.id) & (winner==2) | (red_champion_id==champ.id) & (winner==1) }
     render :json => { fights: fights }
   end
 
+  # @param [Champion] champ
   def render_losses(champ)
     fights = Fight.where { (blue_champion_id==champ.id) & (winner==1) | (red_champion_id==champ.id) & (winner==2) }
     render :json => { fights: fights }

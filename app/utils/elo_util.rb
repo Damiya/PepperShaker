@@ -1,5 +1,7 @@
 class EloUtil
 
+  # @param [Float] self_rating
+  # @param [Float] opponent_rating
   def self.compute_score(self_rating, opponent_rating)
     1.0 / ( 1.0 + ( 10.0 ** ((opponent_rating - self_rating) / 400) ) )
   end
