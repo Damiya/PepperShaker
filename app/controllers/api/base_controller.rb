@@ -1,6 +1,5 @@
 module Api
   class BaseController < ApplicationController
-    inherit_resources
     respond_to :json
     before_filter :default_json
 
