@@ -98,6 +98,8 @@ namespace :deploy do
       ln -sf #{shared_path}/database.yml #{latest_release}/config/database.yml
     CMD
 
+    run "cd #{current_path}; rake assets:precompile"
+
     if fetch(:normalize_asset_timestamps, true)
       stamp       = Time.now.utc.strftime("%Y%m%d%H%M.%S")
       asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")

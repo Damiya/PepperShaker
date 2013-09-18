@@ -1,4 +1,4 @@
-class UserSerializer
+class UserSerializer < BaseSerializer
   attributes :id, :email, :param
 
   def param
