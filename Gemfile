@@ -9,6 +9,8 @@ end
 
 gem 'sidekiq'
 
+gem 'google-analytics-rails'
+
 gem 'thin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

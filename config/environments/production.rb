@@ -81,4 +81,7 @@ PepperShaker::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.ember.variant = :production
+
+  # replace this with your tracker code
+  GA.tracker = 'UA-44114028-1'
 end
