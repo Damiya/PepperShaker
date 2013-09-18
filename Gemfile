@@ -4,7 +4,7 @@ ruby '1.9.3'
 
 group :production do
   gem 'rails_12factor'
-#  gem 'unicorn', :require => false
+  gem 'unicorn'
 end
 
 gem 'sidekiq'
