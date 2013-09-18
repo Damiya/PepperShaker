@@ -20,7 +20,6 @@ PepperShaker::Application.configure do
   config.active_support.deprecation          = :log
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error       = :page_load
 
