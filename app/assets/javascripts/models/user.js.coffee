@@ -1,2 +1,2 @@
-
-PepperShaker.User = DS.Model.extend()
+PepperShaker.User = DS.Model.extend
+  email: DS.attr 'string'

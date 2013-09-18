@@ -73,7 +73,7 @@ Devise.setup do |config|
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
-  # config.paranoid = true
+  config.paranoid = true
 
   # By default Devise will store the user in session. You can skip storage for
   # :http_auth and :token_auth by adding those symbols to the array below.
@@ -98,7 +98,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '6de04a4ea78009b534015b98ff42c67613ae200e34a5a68cb4fa829ef060edcebfde2dc0f549b04b70f1b2dc9571f6df5cce701648ee79722e6dd9f48a2adb98'
+  config.pepper = ENV['SECRET_TOKEN'] || '6de04a4ea78009b534015b98ff42c67613ae200e34a5a68cb4fa829ef060edcebfde2dc0f549b04b70f1b2dc9571f6df5cce701648ee79722e6dd9f48a2adb98'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -127,7 +127,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 7.days
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false

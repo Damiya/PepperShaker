@@ -1,9 +1,8 @@
 PepperShaker::Application.routes.draw do
-  # devise_for :users, controllers: {sessions: 'sessions'}
+  devise_for :users, controllers: {sessions: 'sessions'}
   root 'application#index'
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want
-  #TODO: Undisable this when I actually build in some more sane scraping
   get ENV['SCRAPER_URL'] + '/scrape/:id' => 'scraper#scrape'
 
   namespace :api, defaults: { format: 'json' } do
@@ -34,7 +33,6 @@ PepperShaker::Application.routes.draw do
       get 's/c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /[0-9]+/}
     end
   end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

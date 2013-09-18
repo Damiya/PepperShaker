@@ -29,7 +29,7 @@ class Fight < ActiveRecord::Base
 
   def won_fight?(champion)
     (self.blue_champion_id==champion.id && self.winner==2) ||
-    (self.red_champion_id==champion.id && self.winner==1)
+        (self.red_champion_id==champion.id && self.winner==1)
   end
 
 end

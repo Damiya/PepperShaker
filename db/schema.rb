@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130914205206) do
+ActiveRecord::Schema.define(version: 20130918003849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,28 +21,27 @@ ActiveRecord::Schema.define(version: 20130914205206) do
     t.integer  "elo"
     t.integer  "wins"
     t.integer  "losses"
-    t.boolean  "gets_hitboxed"
-    t.boolean  "undersized_hitbox"
-    t.boolean  "oversized_hitbox"
-    t.boolean  "zoning"
-    t.boolean  "rushdown"
-    t.boolean  "one_hit_knockout"
-    t.boolean  "doesnt_super"
-    t.boolean  "high_health"
-    t.boolean  "low_health"
-    t.boolean  "high_damage"
-    t.boolean  "low_damage"
-    t.boolean  "grappler"
-    t.boolean  "grapple_immune"
-    t.boolean  "flies"
-    t.boolean  "heals"
-    t.boolean  "timescammer"
-    t.boolean  "has_fakes"
-    t.boolean  "bad_ai"
-    t.integer  "aggression_index"
     t.integer  "total_bets"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "gets_hitboxed"
+    t.integer  "undersized_hitbox"
+    t.integer  "oversized_hitbox"
+    t.integer  "zoning"
+    t.integer  "rushdown"
+    t.integer  "one_hit_knockout"
+    t.integer  "doesnt_super"
+    t.integer  "high_health"
+    t.integer  "low_health"
+    t.integer  "high_damage"
+    t.integer  "low_damage"
+    t.integer  "grappler"
+    t.integer  "grapple_immune"
+    t.integer  "flies"
+    t.integer  "heals"
+    t.integer  "timescammer"
+    t.integer  "has_fakes"
+    t.integer  "bad_ai"
   end
 
   add_index "champions", ["name"], name: "index_champions_on_name", unique: true, using: :btree
@@ -84,10 +83,17 @@ ActiveRecord::Schema.define(version: 20130914205206) do
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "remember_token"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

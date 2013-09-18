@@ -1,15 +1,17 @@
-PepperShaker.Auth = Ember.Auth.create(
-  signInEndPoint: '/api/v1/session/create'
-  signOutEndPoint: '/api/v1/session/destroy'
+PepperShaker.Auth = Em.Auth.create
+  signInEndPoint: '/users/sign_in'
+  signOutEndPoint: '/users/sign_out'
   tokenKey: 'auth_token'
   tokenIdKey: 'user_id'
-  userModel: 'PepperShaker.User'
-  tokenLocation: 'authHeader'
-  tokenHeaderKey: 'AUTH-TOKEN'
-  sessionAdapter: 'localStorage'
-  modules: ['authRedirectable', 'timeoutable']
+  modules: ['emberData', 'actionRedirectable', 'authRedirectable', 'timeoutable', 'rememberable']
+  rememberable:
+    tokenKey: 'remember_token'
+    period: 7 #days
+    autoRecall: true
+  actionRedirectable:
+    signInRoute: 'index'
+    signOutRoute: 'index'
   authRedirectable:
     route: 'sign-in'
   timeoutable:
     period: 60
-);

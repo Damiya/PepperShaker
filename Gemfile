@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '1.9.3'
 
 group :production do
   gem 'rails_12factor'
-  gem 'unicorn', :require => false
+#  gem 'unicorn', :require => false
 end
 
 gem 'sidekiq'
@@ -62,7 +62,8 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+# Because winblowze, have to use the github repo
+gem 'bcrypt-ruby', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 
 gem 'devise' # server-side authentication
 
