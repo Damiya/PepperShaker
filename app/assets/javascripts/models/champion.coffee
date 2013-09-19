@@ -1,3 +1,5 @@
+attr = Ember.attr
+
 PepperShaker.Champion = Ember.Model.extend
   name: attr
   elo: attr(Number)
