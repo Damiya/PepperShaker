@@ -69,8 +69,8 @@ class ScrapeWorker
         blue_name    = matchup.children[2].text
         red_value    = matchup.children[1].text.gsub(/[^0-9]+/, '')
         blue_value   = matchup.children[3].text.gsub(/[^0-9]+/, '')
-        red_champ    = Champion.find_or_create_by(name: red_name.downcase)
-        blue_champ   = Champion.find_or_create_by(name: blue_name.downcase)
+        red_champ    = Champion.find_or_create_by(name: red_name.downcase.strip)
+        blue_champ   = Champion.find_or_create_by(name: blue_name.downcase.strip)
 
         fight_entry               = Fight.new(bet_count: bet_count, bets_red: red_value, bets_blue: blue_value, match_id: match_id)
         fight_entry.blue_champion = blue_champ
