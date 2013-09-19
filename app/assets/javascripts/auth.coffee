@@ -1,9 +1,10 @@
 PepperShaker.Auth = Em.Auth.create
-  signInEndPoint: '/users/sign_in'
-  signOutEndPoint: '/users/sign_out'
+  signInEndPoint: '/users/sign-in'
+  signOutEndPoint: '/users/sign-out'
   tokenKey: 'auth_token'
   tokenIdKey: 'user_id'
-  modules: ['emberData', 'actionRedirectable', 'authRedirectable', 'timeoutable', 'rememberable']
+  userModel: 'PepperShaker.User'
+  modules: ['emberModel', 'actionRedirectable', 'authRedirectable', 'timeoutable', 'rememberable']
   rememberable:
     tokenKey: 'remember_token'
     period: 7 #days
@@ -12,6 +13,6 @@ PepperShaker.Auth = Em.Auth.create
     signInRoute: 'index'
     signOutRoute: 'index'
   authRedirectable:
-    route: 'sign-in'
+    route: 'auth.sign-in'
   timeoutable:
     period: 60

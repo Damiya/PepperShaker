@@ -3,7 +3,7 @@
 //= require handlebars
 //= require ember
 //= require ember-auth
-//= require ember-data
+//= require ember-model
 //= require pepper_shaker
 
 //= require_tree .

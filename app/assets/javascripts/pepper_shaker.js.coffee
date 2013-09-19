@@ -1,4 +1,7 @@
 PepperShaker = window.PepperShaker = Ember.Application.create();
+PepperShaker.API = {
+  endPoint: '/api/v1'
+}
 
 #= require ./store
 #= require_tree ./models

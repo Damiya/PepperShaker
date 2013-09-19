@@ -1,23 +1,23 @@
-PepperShaker.Champion = DS.Model.extend
-  name: DS.attr 'string'
-  elo: DS.attr 'number'
-  wins: DS.attr 'number'
-  losses: DS.attr 'number'
-  gets_hitboxed: DS.attr 'number'
-  undersized_hitbox: DS.attr 'number'
-  oversized_hitbox: DS.attr 'number'
-  zoning: DS.attr 'number'
-  rushdown: DS.attr 'number'
-  one_hit_knockout: DS.attr 'number'
-  doesnt_super: DS.attr 'number'
-  high_health: DS.attr 'number'
-  low_health: DS.attr 'number'
-  high_damage: DS.attr 'number'
-  low_damage: DS.attr 'number'
-  grappler: DS.attr 'number'
-  grapple_immune: DS.attr 'number'
-  flies: DS.attr 'number'
-  heals: DS.attr 'number'
-  timescammer: DS.attr 'number'
-  has_fakes: DS.attr 'number'
-  bad_ai: DS.attr 'number'
+PepperShaker.Champion = Ember.Model.extend
+  name: attr
+  elo: attr(Number)
+  wins: attr(Number)
+  losses: attr(Number)
+  gets_hitboxed: attr(Number)
+  undersized_hitbox: attr(Number)
+  oversized_hitbox: attr(Number)
+  zoning: attr(Number)
+  rushdown: attr(Number)
+  one_hit_knockout: attr(Number)
+  doesnt_super: attr(Number)
+  high_health: attr(Number)
+  low_health: attr(Number)
+  high_damage: attr(Number)
+  low_damage: attr(Number)
+  grappler: attr(Number)
+  grapple_immune: attr(Number)
+  flies: attr(Number)
+  heals: attr(Number)
+  timescammer: attr(Number)
+  has_fakes: attr(Number)
+  bad_ai: attr(Number)

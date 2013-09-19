@@ -1,0 +1,1 @@
+PepperShaker.AuthSignOutRoute = Ember.Route.extend PepperShaker.Auth.AuthRedirectable

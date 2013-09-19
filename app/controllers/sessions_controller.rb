@@ -26,7 +26,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def destroy
-    return missing_params unless params[:email] && params[:auth_token]
+    return missing_params unless params[:auth_token]
 
     resource = resource_from_auth_token
     return invalid_credentials unless resource
@@ -46,7 +46,9 @@ class SessionsController < Devise::SessionsController
 
   def invalid_credentials
     warden.custom_failure!
-    render json: {}, status: 401
+    render json: {
+        error: 'Invalid email or password'
+    }, status: 401
   end
 
   def resource_from_credentials

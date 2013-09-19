@@ -4,6 +4,7 @@ class Api::V1::UserController < Api::AuthController
   def show
     unless current_user.id==params[:id].to_i
       render json: {}, status: 401
+      return
     end
 
     output = Jbuilder.encode do |json|
