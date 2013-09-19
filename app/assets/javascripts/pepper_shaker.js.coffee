@@ -3,7 +3,6 @@ PepperShaker.API = {
   endPoint: '/api/v1'
 }
 
-#= require ./store
 #= require_tree ./models
 #= require_tree ./controllers
 #= require_tree ./views
