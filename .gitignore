@@ -21,8 +21,6 @@
 /vendor/assets/javascripts/ember-data.js
 /vendor/assets/javascripts/handlebars.js
 
-#Do not ignore ember-easyForm, that's a valid vendor file
-
 #Ignore .env, which stores secret settings (secret key, user/pass, etc)
 /.env
 
