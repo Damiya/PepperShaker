@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Damiya/rails_admin.git
-  revision: 3e3dd440dd0cfd95df851a4a7454db09c2f912e6
+  revision: b080b08ffd0984ec32236350f3ed90f694f44b4c
   specs:
     rails_admin (0.5.0)
       bootstrap-sass (~> 3.0)
