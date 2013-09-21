@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130918211508) do
+ActiveRecord::Schema.define(version: 20130921094418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20130918211508) do
     t.integer  "elo"
     t.integer  "wins"
     t.integer  "losses"
+    t.integer  "aggression_index"
     t.integer  "total_bets"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -69,6 +70,19 @@ ActiveRecord::Schema.define(version: 20130918211508) do
 
   add_index "fights", ["match_id"], name: "index_fights_on_match_id", unique: true, using: :btree
 
+  create_table "rails_admin_histories", force: true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      limit: 2
+    t.integer  "year",       limit: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -89,7 +103,7 @@ ActiveRecord::Schema.define(version: 20130918211508) do
     t.string   "unconfirmed_email"
     t.string   "remember_token"
     t.boolean  "admin",                  default: false
-    t.string   "username"
+    t.string   "username",               default: "",    null: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

@@ -4,6 +4,8 @@ PepperShaker::Application.routes.draw do
       :controllers => { :sessions => 'sessions'}
   }
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   root 'application#index'
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want

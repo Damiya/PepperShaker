@@ -1,25 +1,15 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'rails', '4.0.0'
-gem 'thin' # HTTPd
 gem 'pg' # DB
-gem 'rails-api'
-
-group :development do
-  gem 'therubyracer'
-end
-
-group :production do
-  gem 'rails_12factor'
-  gem 'unicorn'
-end
+gem 'unicorn'
 
 gem 'mechanize'
 gem 'squeel'
 gem 'sidekiq'
-
+gem 'unicorn-rails'
 gem 'google-analytics-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -32,7 +22,7 @@ end
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'ember-data-source', '1.0.0.beta2'
-gem 'bootstrap-sass', '~> 3.0.0'
+gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
 
 gem 'ember-rails'
 

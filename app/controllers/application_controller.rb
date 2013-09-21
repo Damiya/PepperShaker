@@ -1,5 +1,5 @@
-class ApplicationController < ActionController::API
-  include ActionController::MimeResponds
+class ApplicationController < ActionController::Base
+
 
   def index
     render 'application/index'
