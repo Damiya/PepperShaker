@@ -2,12 +2,10 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-group :core do
-  gem 'rails', '4.0.0'
-  gem 'rails-api'
-  gem 'thin' # HTTPd
-  gem 'pg' # DB
-end
+gem 'rails', '4.0.0'
+gem 'thin' # HTTPd
+gem 'pg' # DB
+gem 'rails-api'
 
 group :development do
   gem 'therubyracer'
@@ -34,7 +32,7 @@ end
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'ember-data-source', '1.0.0.beta2'
-gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+gem 'bootstrap-sass', '~> 3.0.0'
 
 gem 'ember-rails'
 
@@ -60,7 +58,9 @@ end
 
 # Use ActiveModel has_secure_password
 # Because winblowze, have to use the github repo
-gem 'bcrypt-ruby', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+gem 'bcrypt-ruby'
+
+gem 'rails_admin', git: 'git://github.com/Damiya/rails_admin.git'
 
 gem 'devise' # server-side authentication
 
