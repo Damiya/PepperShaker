@@ -19,19 +19,17 @@ PepperShaker::Application.routes.draw do
         get 'index' => :index
       end
     end
-    resources :fights, :controller => 'fights' do
-      member do
-        get 'by_name/:champ_one/:champ_two' => :compare_by_name, :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
-        get 'by_id/:champ_one/:champ_two' => :compare_by_id, :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
-      end
-    end
+
+    get 'fights/by_name/:champ_one/:champ_two' => 'fights#compare_by_name', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
+    get 'fights/by_id/:champ_one/:champ_two' => 'fights#compare_by_id', :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
+
     resource :user do
       member do
         get ':id' => 'user#show', :constraints => { :id => /\d+/ }
       end
     end
     get 'stats' => 'errata#stats'
-    get 'f/:champ_one/:champ_two' => 'fight#redirect_to_hightower', :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
+    get 'f/:champ_one/:champ_two' => 'fights#redirect_to_hightower', :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
     get 'c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /\d+/ }
   end
 
