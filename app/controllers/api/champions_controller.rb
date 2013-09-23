@@ -19,7 +19,7 @@ class Api::ChampionsController < Api::AuthController
   def show
     champ = Champion.find_by_id(params[:id])
     if champ
-      champ
+      render json: champ
     else
       not_found_response
     end
@@ -44,7 +44,6 @@ class Api::ChampionsController < Api::AuthController
 
   api :GET, '/champions/:id/losses'
   param_group :champion
-
   def show_losses_by_id
     champ = Champion.find_by_id(params[:id])
     render_losses(champ)
