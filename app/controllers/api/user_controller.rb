@@ -1,4 +1,4 @@
-class Api::V1::UserController < Api::AuthController
+class Api::UserController < Api::AuthController
   before_action
 
   def show

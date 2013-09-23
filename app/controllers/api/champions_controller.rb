@@ -1,49 +1,57 @@
-class Api::V1::ChampionsController < Api::AuthController
+class Api::ChampionsController < Api::AuthController
+  resource_description do
+    short 'Lookup entries in the Champions table, representing the various characters that can be used in fights.'
+    formats ['json']
+    error 404, "Champion not found"
+  end
+
+  def_param_group :champion do
+    param :id, /\d+/, 'Champion Id', :required => true, :desc => 'Represents a champion entry'
+  end
+
   def index
-    if_authenticated do
-      render json: Champion.all
+    render json: Champion.all
+  end
+
+  api :GET, '/champions/:id', 'Output the full champion object'
+  param_group :champion
+  example " 'champion': "
+  def show
+    champ = Champion.find_by_id(params[:id])
+    if champ
+      champ
+    else
+      not_found_response
     end
   end
 
-  def show_by_name
-    # Supposedly Rails sanitizes 'find_by_blah'? Consider me skeptical
-    champ = Champion.find_by_name(params[:name].downcase)
-    render json: champ
-  end
+  api :GET, '/champions/:id/fights'
+  param_group :champion
 
-  def show_fights_by_name
-    champ  = Champion.find_by_name(params[:name].downcase)
-    render_fights(champ)
-  end
-
-  def show_wins_by_name
-    champ  = Champion.find_by_name(params[:name].downcase)
-    render_wins(champ)
-  end
-
-  def show_losses_by_name
-    champ  = Champion.find_by_name(params[:name].downcase)
-    render_losses(champ)
-  end
-
-  def show_by_id
-    champ = Champion.find_by_id(params[:id])
-    render json: champ
-  end
   def show_fights_by_id
-    champ  = Champion.find_by_id(params[:id])
+    champ = Champion.find_by_id(params[:id])
     render_fights(champ)
   end
+
+
+  api :GET, '/champions/:id/wins'
+  param_group :champion
 
   def show_wins_by_id
-    champ  = Champion.find_by_id(params[:id])
+    champ = Champion.find_by_id(params[:id])
     render_wins(champ)
   end
 
+  api :GET, '/champions/:id/losses'
+  param_group :champion
+
   def show_losses_by_id
-    champ  = Champion.find_by_id(params[:id])
+    champ = Champion.find_by_id(params[:id])
     render_losses(champ)
   end
+
+  api :GET, '/c/:id'
+  param_group :champion
 
   def redirect_to_hightower
     champ = Champion.find_by_id(params[:id])

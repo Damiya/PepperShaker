@@ -1,9 +1,5 @@
 PepperShaker::Application.routes.draw do
-  devise_for :users, {
-      :path_names => { :sign_in => 'sign-in', :sign_out => 'sign-out' }, # Changed to be more consistent with ember
-      :controllers => { :sessions => 'sessions'}
-  }
-
+  apipie
   root 'application#index'
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want
@@ -11,36 +7,33 @@ PepperShaker::Application.routes.draw do
   get ENV['SCRAPER_URL'] + '/cheat/:id' => 'scraper#cheat'
 
   namespace :api, defaults: { format: 'json' } do
-    namespace :v1 do
-      resources :champions, :controller => 'champions', constraints: { :id => /[0-9]+/ }  do
-        member do
-          get ':id' => :show_by_id
-          get ':id/fights' => :show_fights_by_id
-          get ':id/wins' => :show_wins_by_id
-          get ':id/losses' => :show_losses_by_id
-        end
-        collection do
-          get 'list' => :list_champions
-          get 'index' => :index
-        end
+    resources :champions, :controller => 'champions', constraints: { :id => /\d+/ } do
+      member do
+        get ':id' => :show
+        get ':id/fights' => :show_fights_by_id
+        get ':id/wins' => :show_wins_by_id
+        get ':id/losses' => :show_losses_by_id
       end
-      resources :fights, :controller => 'fights' do
-        member do
-          get 'by_name/:champ_one/:champ_two' => :compare_by_name, :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
-          get 'by_id/:champ_one/:champ_two' => :compare_by_id, :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
-        end
+      collection do
+        get 'list' => :list_champions
+        get 'index' => :index
       end
-      resource :user do
-        member do
-          get ':id' => 'user#show', :constraints => { :id => /[0-9]+/}
-        end
-      end
-      get 'stats' => 'errata#stats'
-      get 'f/:champ_one/:champ_two' => 'fight#redirect_to_hightower', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
-      get 'c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /[0-9]+/}
     end
+    resources :fights, :controller => 'fights' do
+      member do
+        get 'by_name/:champ_one/:champ_two' => :compare_by_name, :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
+        get 'by_id/:champ_one/:champ_two' => :compare_by_id, :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
+      end
+    end
+    resource :user do
+      member do
+        get ':id' => 'user#show', :constraints => { :id => /\d+/ }
+      end
+    end
+    get 'stats' => 'errata#stats'
+    get 'f/:champ_one/:champ_two' => 'fight#redirect_to_hightower', :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
+    get 'c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /\d+/ }
   end
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

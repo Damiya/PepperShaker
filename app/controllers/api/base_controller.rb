@@ -14,6 +14,10 @@ module Api
 
     protected
 
+    def not_found_response
+      render json: {}, status: 404
+    end
+
     def default_json
       request.format = :json if params[:format].nil?
     end

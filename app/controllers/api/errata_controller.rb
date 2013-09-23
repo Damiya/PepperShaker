@@ -1,4 +1,4 @@
-class Api::V1::ErrataController < ApplicationController
+class Api::ErrataController < ApplicationController
   def stats
     num_fights            = Fight.count
     num_champions         = Champion.count

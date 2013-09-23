@@ -11,6 +11,7 @@ gem 'squeel'
 gem 'sidekiq'
 gem 'unicorn-rails'
 gem 'google-analytics-rails'
+gem 'apipie-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
