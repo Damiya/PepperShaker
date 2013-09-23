@@ -1,4 +1,4 @@
-class Api::V1::FightController < ApplicationController
+class Api::V1::FightsController < ApplicationController
   def show
     # Supposedly Rails sanitizes 'find_by_blah'? Consider me skeptical
     fight = Fight.find_by_id(params[:id])

@@ -5,7 +5,7 @@ body {
   padding-bottom: 50px;
 }
 
-.form-signin {
+.user-form {
   .form-control {
     position: relative;
     font-size: 16px;
@@ -18,7 +18,7 @@ body {
     z-index: 2;
   }
 
-  .form-signin-heading,
+  .user-form-heading,
   .checkbox {
     margin-bottom: 10px
   }
@@ -27,13 +27,14 @@ body {
     font-weight: normal;
   }
 
-  input[type="text"] {
+  .bottom-squared {
+    margin-top: 5px;
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
 
-  input[type="password"] {
+  .top-squared {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;

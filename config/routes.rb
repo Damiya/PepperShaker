@@ -12,21 +12,22 @@ PepperShaker::Application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      resource :champion do
+      resources :champions, :controller => 'champions', constraints: { :id => /[0-9]+/ }  do
         member do
-          get ':id' => 'champion#show_by_id', :constraints => { :id => /[0-9]+/ }
-          get ':id/fights' => 'champion#show_fights_by_id', :constraints => { :id => /[0-9]+/ }
-          get ':id/wins' => 'champion#show_wins_by_id', :constraints => { :id => /[0-9]+/ }
-          get ':id/losses' => 'champion#show_losses_by_id', :constraints => { :id => /[0-9]+/ }
+          get ':id' => :show_by_id
+          get ':id/fights' => :show_fights_by_id
+          get ':id/wins' => :show_wins_by_id
+          get ':id/losses' => :show_losses_by_id
         end
         collection do
-          get 'list' => 'champion#list_champions'
+          get 'list' => :list_champions
+          get 'index' => :index
         end
       end
-      resource :fight do
+      resources :fights, :controller => 'fights' do
         member do
-          get 'by_name/:champ_one/:champ_two' => 'fight#compare_by_name', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
-          get 'by_id/:champ_one/:champ_two' => 'fight#compare_by_id', :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
+          get 'by_name/:champ_one/:champ_two' => :compare_by_name, :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
+          get 'by_id/:champ_one/:champ_two' => :compare_by_id, :constraints => { :champ_one => /[0-9]+/, :champ_two => /[0-9]+/}
         end
       end
       resource :user do

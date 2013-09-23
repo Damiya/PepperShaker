@@ -1,4 +1,10 @@
-class Api::V1::ChampionController < ApplicationController
+class Api::V1::ChampionsController < Api::AuthController
+  def index
+    if_authenticated do
+      render json: Champion.all
+    end
+  end
+
   def show_by_name
     # Supposedly Rails sanitizes 'find_by_blah'? Consider me skeptical
     champ = Champion.find_by_name(params[:name].downcase)

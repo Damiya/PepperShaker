@@ -1,7 +1,7 @@
-<form class="form-signin" {{action "login" on="submit"}}>
-    <h2 class="form-signin-heading">Please sign in</h2>
-    {{input placeholder="Username" autofocus="true" class="form-control" value=email}}
-    {{input placeholder="Password" type="password" class="form-control" value=password}}
+<form class="user-form sign-in" {{action "login" on="submit"}}>
+    <h2 class="user-form-heading">Please sign in</h2>
+    {{input placeholder="Email" autofocus="true" class="form-control bottom-squared" value=email}}
+    {{input placeholder="Password" type="password" class="form-control top-squared" value=password}}
     <label class="checkbox">
         {{input type="checkbox" checked=remember}}Remember me
     </label>

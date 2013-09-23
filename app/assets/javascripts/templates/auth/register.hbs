@@ -1,0 +1,6 @@
+<form class="user-form register" {{action "register" on="submit"}}>
+    {{input placeholder="Email" autofocus="true" class="form-control" value=email}}
+    {{input placeholder="Password" type="password" class="form-control bottom-squared" value=password}}
+    {{input placeholder="Confirm password" type="password" class="form-control top-squared" value=confirm_password}}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+</form>

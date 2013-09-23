@@ -1,8 +1,8 @@
 class Api::V1::UserController < Api::AuthController
-  before_action :auth_only!
+  before_action
 
   def show
-    unless current_user.id==params[:id].to_i
+    unless is_authenticated? and current_user.id==params[:id].to_i
       render json: {}, status: 401
       return
     end

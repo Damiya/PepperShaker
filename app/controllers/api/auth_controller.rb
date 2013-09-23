@@ -5,10 +5,12 @@ module Api
 
     protected
 
-    def auth_only!
-      unless params[:auth_token] && user_signed_in?
-        render json: {}, status: 401
+    def if_authenticated
+      if params[:auth_token] && user_signed_in?
+        yield
       end
+
+      render json: {}, status: 401
     end
 
     def validate_token!
