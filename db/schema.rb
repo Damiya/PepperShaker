@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921094418) do
+ActiveRecord::Schema.define(version: 20130923233914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,24 +25,6 @@ ActiveRecord::Schema.define(version: 20130921094418) do
     t.integer  "total_bets"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "gets_hitboxed"
-    t.integer  "undersized_hitbox"
-    t.integer  "oversized_hitbox"
-    t.integer  "zoning"
-    t.integer  "rushdown"
-    t.integer  "one_hit_knockout"
-    t.integer  "doesnt_super"
-    t.integer  "high_health"
-    t.integer  "low_health"
-    t.integer  "high_damage"
-    t.integer  "low_damage"
-    t.integer  "grappler"
-    t.integer  "grapple_immune"
-    t.integer  "flies"
-    t.integer  "heals"
-    t.integer  "timescammer"
-    t.integer  "has_fakes"
-    t.integer  "bad_ai"
   end
 
   add_index "champions", ["name"], name: "index_champions_on_name", unique: true, using: :btree

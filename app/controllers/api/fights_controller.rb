@@ -1,11 +1,37 @@
-class Api::FightsController < ApplicationController
-  def show
-    # Supposedly Rails sanitizes 'find_by_blah'? Consider me skeptical
-    fight = Fight.find_by_id(params[:id])
-
-    render json: fight
+class Api::FightsController < Api::BaseController
+  resource_description do
+    short 'SaltyBet fights and their outcomes.'
+    formats ['json']
   end
 
+  def_param_group :by_id do
+    param :champ_one, Integer, 'Champion One id', :required => true, :desc => 'Represents a champion entry'
+    param :champ_two, Integer, 'Champion Two id', :required => true, :desc => 'Represents a champion entry'
+  end
+
+  def_param_group :by_name do
+    param :champ_one, /[^\/]+/, 'Champion One name', :required => true, :desc => 'Represents a champion entry'
+    param :champ_two, /[^\/]+/, 'Champion Two name', :required => true, :desc => 'Represents a champion entry'
+  end
+
+  api :GET, '/fights/:id'
+  param :id, /\d+/, 'Fight id', :required => true, :desc => 'The id for a given fight'
+  see 'champions#show_fights_by_id'
+  see 'champions#show_wins_by_id'
+  see 'champions#show_losses_by_id'
+  example ""
+  def show
+    fight = Fight.find_by_id(params[:id])
+
+    if fight
+      render json: fight
+    else
+      not_found_response
+    end
+  end
+
+  api :GET, '/fights/by_name/:champ_one/:champ_two'
+  param_group :by_name
   def compare_by_name
     champ_one = Champion.find_by_name(params[:champ_one].downcase)
     champ_two = Champion.find_by_name(params[:champ_two].downcase)
@@ -13,6 +39,8 @@ class Api::FightsController < ApplicationController
     render_fight(champ_one, champ_two)
   end
 
+  api :GET, '/fights/by_id/:champ_one/:champ_two'
+  param_group :by_id
   def compare_by_id
     champ_one = Champion.find_by_id(params[:champ_one])
     champ_two = Champion.find_by_id(params[:champ_two])
@@ -20,6 +48,8 @@ class Api::FightsController < ApplicationController
     render_fight(champ_one, champ_two)
   end
 
+  api :GET, '/f/:champ_one/:champ_two', 'Redirect to the matchup on the FightMoney app (with comments and tags)'
+  param_group :by_id
   def redirect_to_hightower
     champ_one = Champion.find_by_id(params[:champ_one])
     champ_two = Champion.find_by_id(params[:champ_two])

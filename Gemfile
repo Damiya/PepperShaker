@@ -12,6 +12,7 @@ gem 'sidekiq'
 gem 'unicorn-rails'
 gem 'google-analytics-rails'
 gem 'apipie-rails'
+gem 'maruku'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
@@ -50,8 +51,6 @@ end
 # Use ActiveModel has_secure_password
 # Because winblowze, have to use the github repo
 gem 'bcrypt-ruby'
-
-gem 'rails_admin', git: 'git://github.com/Damiya/rails_admin.git'
 
 gem 'devise' # server-side authentication
 

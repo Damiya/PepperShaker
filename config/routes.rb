@@ -20,6 +20,7 @@ PepperShaker::Application.routes.draw do
       end
     end
 
+    get 'fights/:id' => 'fights#show', constraints: { :id => /\d+/ }
     get 'fights/by_name/:champ_one/:champ_two' => 'fights#compare_by_name', :constraints => { :champ_one => /[^\/]+/, :champ_two => /[^\/]+/ }
     get 'fights/by_id/:champ_one/:champ_two' => 'fights#compare_by_id', :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
 
@@ -28,7 +29,6 @@ PepperShaker::Application.routes.draw do
         get ':id' => 'user#show', :constraints => { :id => /\d+/ }
       end
     end
-    get 'stats' => 'errata#stats'
     get 'f/:champ_one/:champ_two' => 'fights#redirect_to_hightower', :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
     get 'c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /\d+/ }
   end
