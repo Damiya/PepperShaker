@@ -15,9 +15,9 @@ PepperShaker::Application.routes.draw do
     resources :champions, :controller => 'champions', constraints: { :id => /\d+/ } do
       member do
         get ':id' => :show
-        get ':id/fights' => :show_fights_by_id
-        get ':id/wins' => :show_wins_by_id
-        get ':id/losses' => :show_losses_by_id
+        get 'fights' => :show_fights_by_id
+        get 'wins' => :show_wins_by_id
+        get 'losses' => :show_losses_by_id
       end
       collection do
         get 'list' => :list_champions
