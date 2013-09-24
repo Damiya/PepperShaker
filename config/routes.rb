@@ -35,7 +35,7 @@ PepperShaker::Application.routes.draw do
       end
     end
     get 'f/:champ_one/:champ_two' => 'fights#redirect_to_hightower', :constraints => { :champ_one => /\d+/, :champ_two => /\d+/ }
-    get 'c/:id' => 'champion#redirect_to_hightower', :constraints => { :id => /\d+/ }
+    get 'c/:id' => 'champions#redirect_to_hightower', :constraints => { :id => /\d+/ }
   end
 
 
