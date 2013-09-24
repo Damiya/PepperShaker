@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link type='text/css' rel='stylesheet' href='../apipie/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../apipie/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../apipie/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../apipie/stylesheets/application.css'/>
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-44114028-1', 'apeppershaker.com');
+      ga('send', 'pageview');
+
+  </script>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li class='active'><a href='../apipie/1.0.html'>PepperShaker 1.0</a></li>
+</ul>
+
+<div><p>PepperShaker is a site that automatically scrapes matches from <a href='http://saltybet.com'>SaltyBet.com</a> and exposes the results via an API.</p></div>
+
+<h1 class='page-header'>Resources</h1>
+
+  <h2>
+    <a href='../apipie/1.0/champions.html'>
+      Champions
+    </a><br>
+    <small>The various characters that can be used in fights.</small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td><a href='../apipie/1.0/champions/show.html'>GET /api/champions/:id</a></td>
+            <td width='60%'>Output the full champion object</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/champions/show_fights_by_id.html'>GET /api/champions/:id/fights</a></td>
+            <td width='60%'>Output all fights the champ has participated in</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/champions/show_wins_by_id.html'>GET /api/champions/:id/wins</a></td>
+            <td width='60%'>Output all fights the champion has won</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/champions/show_losses_by_id.html'>GET /api/champions/:id/losses</a></td>
+            <td width='60%'>Output all fights the champion has lost</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/champions/redirect_to_hightower.html'>GET /api/c/:id</a></td>
+            <td width='60%'>Redirect to the champion on the FightMoney app (with comments and tags)</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/champions/list_champions.html'>GET /api/champions/list</a></td>
+            <td width='60%'>Returns a JSON dictionary where the keys are champion names and the ids are champion ids</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='../apipie/1.0/fights.html'>
+      Fights
+    </a><br>
+    <small>SaltyBet fights and their outcomes.</small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td><a href='../apipie/1.0/fights/show.html'>GET /api/fights/:id</a></td>
+            <td width='60%'>Looks up a given fight by id</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/fights/compare_by_name.html'>GET /api/fights/by_name/:champ_one/:champ_two</a></td>
+            <td width='60%'>Looks up both champions and provides their stats in a single object</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/fights/compare_by_id.html'>GET /api/fights/by_id/:champ_one/:champ_two</a></td>
+            <td width='60%'>Looks up both champions and provides their stats in a single object</td>
+          </tr>
+          <tr>
+            <td><a href='../apipie/1.0/fights/redirect_to_hightower.html'>GET /api/f/:champ_one/:champ_two</a></td>
+            <td width='60%'>Redirect to the matchup on the FightMoney app (with comments and tags)</td>
+          </tr>
+    </tbody>
+  </table>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer>
+</footer>
+  </div>
+  <script type='text/javascript' src='../apipie/javascripts/bundled/jquery-1.7.2.js'></script>
+<script type='text/javascript' src='../apipie/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../apipie/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../apipie/javascripts/apipie.js'></script>
+</body>
+</html>

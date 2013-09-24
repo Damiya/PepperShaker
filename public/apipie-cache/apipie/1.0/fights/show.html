@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link type='text/css' rel='stylesheet' href='../../../apipie/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../../apipie/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../../apipie/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../../apipie/stylesheets/application.css'/>
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-44114028-1', 'apeppershaker.com');
+      ga('send', 'pageview');
+
+  </script>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../../apipie/1.0.html'>PepperShaker 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../../apipie/1.0/fights.html'>
+      Fights
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>show</li>
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /api/fights/:id<br>
+      <small>Looks up a given fight by id</small>
+    </h1>
+  </div>
+
+<div>
+    Also see <a href="../../../apipie/1.0/champions/show_fights_by_id.html">champions#show_fights_by_id</a>, <a href="../../../apipie/1.0/champions/show_wins_by_id.html">champions#show_wins_by_id</a>, and <a href="../../../apipie/1.0/champions/show_losses_by_id.html">champions#show_losses_by_id</a>.
+
+  
+
+    <h2>Examples</h2>
+      <pre class="prettyprint">{&quot;id&quot;:1,&quot;blue_champion_id&quot;:2,&quot;red_champion_id&quot;:1,&quot;bets_red&quot;:3752,&quot;bets_blue&quot;:7079,&quot;bet_count&quot;:44,&quot;winner&quot;:2,&quot;created_at&quot;:&quot;2013-09-19T03:50:04.703Z&quot;,&quot;updated_at&quot;:&quot;2013-09-19T03:50:04.703Z&quot;,&quot;match_id&quot;:4773}</pre>
+
+    <h2>Supported Formats</h2>
+    json
+
+
+    <h2>Params</h2>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Param name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      <p>Fight id</p>
+        <br>
+        Value: Must match regular expression /\d+/.
+    </td>
+  </tr>
+
+  
+
+      </tbody>
+    </table>
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer>
+</footer>
+  </div>
+  <script type='text/javascript' src='../../../apipie/javascripts/bundled/jquery-1.7.2.js'></script>
+<script type='text/javascript' src='../../../apipie/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../../apipie/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../../apipie/javascripts/apipie.js'></script>
+</body>
+</html>
