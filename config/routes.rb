@@ -1,5 +1,10 @@
 PepperShaker::Application.routes.draw do
   apipie
+  devise_for :users, {
+      :path_names => { :sign_in => 'sign-in', :sign_out => 'sign-out' }, # Changed to be more consistent with ember
+      :controllers => { :sessions => 'sessions'}
+  }
+
   root 'application#index'
 
   #Hiding the url in env so I can scrape from an external site through a hidden url if i want
