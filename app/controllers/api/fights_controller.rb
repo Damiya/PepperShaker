@@ -14,12 +14,13 @@ class Api::FightsController < Api::BaseController
     param :champ_two, /[^\/]+/, 'Champion Two name', :required => true, :desc => 'Represents a champion entry'
   end
 
-  api :GET, '/fights/:id'
+  api :GET, '/fights/:id', 'Looks up a given fight by id'
   param :id, /\d+/, 'Fight id', :required => true, :desc => 'The id for a given fight'
   see 'champions#show_fights_by_id'
   see 'champions#show_wins_by_id'
   see 'champions#show_losses_by_id'
-  example ""
+  example "{\"id\":1,\"blue_champion_id\":2,\"red_champion_id\":1,\"bets_red\":3752,\"bets_blue\":7079,\"bet_count\":44," +
+              "\"winner\":2,\"created_at\":\"2013-09-19T03:50:04.703Z\",\"updated_at\":\"2013-09-19T03:50:04.703Z\",\"match_id\":4773}"
   def show
     fight = Fight.find_by_id(params[:id])
 
@@ -30,8 +31,11 @@ class Api::FightsController < Api::BaseController
     end
   end
 
-  api :GET, '/fights/by_name/:champ_one/:champ_two'
+  api :GET, '/fights/by_name/:champ_one/:champ_two', 'Looks up both champions and provides their stats in a single object'
+  description 'If the champions have fought each other before, includes a third subobject, -rematch-. See the second example'
   param_group :by_name
+  example "{\"left\": [champion_one_object], \"right\": [champion_two_object]}"
+  example "... ,\"rematch\":{\"left_has_won\":false,\"right_has_won\":true}}"
   def compare_by_name
     champ_one = Champion.find_by_name(params[:champ_one].downcase)
     champ_two = Champion.find_by_name(params[:champ_two].downcase)
@@ -39,8 +43,11 @@ class Api::FightsController < Api::BaseController
     render_fight(champ_one, champ_two)
   end
 
-  api :GET, '/fights/by_id/:champ_one/:champ_two'
+  api :GET, '/fights/by_name/:champ_one/:champ_two', 'Looks up both champions and provides their stats in a single object'
+  description 'If the champions have fought each other before, includes a third subobject, -rematch-. See the second example'
   param_group :by_id
+  example "{\"left\": [champion_one_object], \"right\": [champion_two_object]}"
+  example "... ,\"rematch\":{\"left_has_won\":false,\"right_has_won\":true}}"
   def compare_by_id
     champ_one = Champion.find_by_id(params[:champ_one])
     champ_two = Champion.find_by_id(params[:champ_two])
