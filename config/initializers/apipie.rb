@@ -6,4 +6,5 @@ Apipie.configure do |config|
   config.doc_base_url            = '/apipie'
   config.api_controllers_matcher = "#{Rails.root}/app/controllers/**/*.rb"
   config.app_info                = 'PepperShaker is a site that automatically scrapes matches from [SaltyBet.com](http://saltybet.com) and exposes the results via an API.'
+  config.use_cache               = Rails.env.production?
 end
