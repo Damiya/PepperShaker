@@ -13,6 +13,7 @@ gem 'unicorn-rails'
 gem 'google-analytics-rails'
 gem 'apipie-rails'
 gem 'maruku'
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
