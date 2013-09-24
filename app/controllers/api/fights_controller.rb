@@ -43,7 +43,7 @@ class Api::FightsController < Api::BaseController
     render_fight(champ_one, champ_two)
   end
 
-  api :GET, '/fights/by_name/:champ_one/:champ_two', 'Looks up both champions and provides their stats in a single object'
+  api :GET, '/fights/by_id/:champ_one/:champ_two', 'Looks up both champions and provides their stats in a single object'
   description 'If the champions have fought each other before, includes a third subobject, -rematch-. See the second example'
   param_group :by_id
   example "{\"left\": [champion_one_object], \"right\": [champion_two_object]}"
